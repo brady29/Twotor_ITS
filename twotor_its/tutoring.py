@@ -19,7 +19,12 @@ from .analytics import (
 from .bkt import BKTModel, default_bkt_model
 from .helpdesk import Helpdesk
 from .models import Attempt, Course, Lesson, LessonActivity, ProgressRecord, Quiz, User, UserRole
-from .regression import LinearRegressionModel, default_regression_model
+from .regression import (
+    LinearRegressionModel,
+    RegressionWeights,
+    default_regression_model,
+    train_regression_weights,
+)
 from .storage import Storage
 
 
@@ -42,10 +47,10 @@ class TutoringSystem:
         self.progress_records: List[ProgressRecord] = self.storage.load_progress()
         self.lesson_activity: List[LessonActivity] = self.storage.load_lesson_activity()
         self.helpdesk = Helpdesk(self.storage.load_help_tickets())
-        self.regression: LinearRegressionModel = default_regression_model()
         self._mastery_cache: Dict[str, BKTModel] = {}
         self._quiz_index: Dict[str, Quiz] = self._build_quiz_index()
         self._lesson_index: Dict[str, Lesson] = self._build_lesson_index()
+        self.regression: LinearRegressionModel = self._init_regression_model()
 
     # region lookup helpers
     def _build_quiz_index(self) -> Dict[str, Quiz]:
@@ -413,5 +418,49 @@ class TutoringSystem:
             "question_difficulty": mean(q.difficulty for q in quiz.questions),
         }
         return self.regression.predict_clipped(features)
+
+    # endregion
+
+    # region regression training
+    def _init_regression_model(self) -> LinearRegressionModel:
+        try:
+            trained = self._train_regression_from_state()
+            if trained:
+                return LinearRegressionModel(trained)
+        except Exception:
+            # Fall back to defaults on any training failure.
+            pass
+        return default_regression_model()
+
+    def _train_regression_from_state(self) -> RegressionWeights | None:
+        rows: List[Dict[str, float]] = []
+        attempts_by_user: Dict[str, List[Attempt]] = {}
+        for attempt in self.attempts:
+            attempts_by_user.setdefault(attempt.user_id, []).append(attempt)
+
+        for user_attempts in attempts_by_user.values():
+            if len(user_attempts) < 2:
+                continue
+            bkt = default_bkt_model()
+            for idx in range(len(user_attempts) - 1):
+                attempt = user_attempts[idx]
+                quiz = self._quiz_index.get(attempt.quiz_id)
+                if not quiz:
+                    continue
+                for ans, question in zip(attempt.answers, quiz.questions):
+                    bkt.update(question.skill, ans == question.correct_choice)
+                mastery_values = list(bkt.dump_mastery().values())
+                rows.append(
+                    {
+                        "avg_mastery": mean(mastery_values) if mastery_values else 0.3,
+                        "recent_attempt_score": attempt.score,
+                        "time_spent_minutes": attempt.time_taken_seconds / 60,
+                        "attempts_last_week": min(idx + 1, 7),
+                        "question_difficulty": mean(q.difficulty for q in quiz.questions),
+                        "target_score": user_attempts[idx + 1].score,
+                    }
+                )
+
+        return train_regression_weights(rows)
 
     # endregion
