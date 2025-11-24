@@ -181,7 +181,7 @@
       "email": "zoe-brooks@example.edu"
     },
     {
-      "user_id": "stu-030",
+      "user_id": "Demo-Student",
       "name": "Jacob Torres",
       "role": "student",
       "email": "jacob-torres@example.edu"
@@ -190,7 +190,7 @@
   "courses": [
     {
       "course_id": "calc-101",
-      "title": "Calculus & Precalculus Pathway",
+      "title": "Calculus & Precalculus",
       "instructor_id": "teach-ramy",
       "student_ids": [
         "stu-001",
@@ -222,7 +222,7 @@
         "stu-027",
         "stu-028",
         "stu-029",
-        "stu-030"
+        "Demo-Student"
       ],
       "modules": [
         {
@@ -750,7 +750,7 @@
               "skill": "calculus",
               "summary": "Setting up derivatives with respect to time.",
               "content": "Geometric related rates with units and common traps.",
-              "estimated_minutes": 14
+              "estimated_minutes": 15
             }
           ],
           "quizzes": [

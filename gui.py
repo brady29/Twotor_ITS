@@ -107,6 +107,7 @@ class TwoTorGUI:
         self.lesson_map: dict[str, Lesson] = {lesson.lesson_id: lesson for lesson in self.system.list_lessons()}
         self.student_mastery_scores: list[dict] = []
         self.lesson_payload: list[dict] = []
+        self.teacher_payload: dict = {}
 
         self._build_layout()
         self._build_landing()
@@ -761,14 +762,27 @@ class TwoTorGUI:
     def _draw_difficulty_chart(self, canvas: tk.Canvas | None = None):
         canvas = canvas or self.difficulty_canvas
         canvas.delete("all")
-        slices = [("Easy", 45, "#1cad6f"), ("Medium", 35, "#f9a825"), ("Hard", 20, "#e53935")]
+        breakdown = (self.teacher_payload or {}).get("difficulty_breakdown", {})
+        total_pct = sum(breakdown.values())
+        if not breakdown or total_pct <= 0:
+            canvas.create_text(
+                (canvas.winfo_width() or 400) / 2,
+                (canvas.winfo_height() or 240) / 2,
+                text="No attempted questions yet.",
+                font=("Segoe UI", 10, "bold"),
+            )
+            return
+        order = [("Easy", "#1cad6f"), ("Medium", "#f9a825"), ("Hard", "#e53935")]
         w = int(canvas.winfo_width() or 480)
         h = int(canvas.winfo_height() or 260)
         radius = min(w, h) * 0.28
         center = (w / 2, h / 2 + 10)
         start = 0
-        for label, pct, color in slices:
-            extent = pct / 100 * 360
+        for label, color in order:
+            pct = breakdown.get(label, 0.0)
+            if pct <= 0:
+                continue
+            extent = (pct / total_pct) * 360 if total_pct else 0
             canvas.create_arc(
                 center[0] - radius,
                 center[1] - radius,
@@ -792,7 +806,14 @@ class TwoTorGUI:
                 fill=color,
                 width=2,
             )
-            canvas.create_text(lx, ly, text=f"{label}: {pct}%", font=("Segoe UI", 9, "bold"), fill=color, anchor="c")
+            canvas.create_text(
+                lx,
+                ly,
+                text=f"{label}: {pct:.1f}%",
+                font=("Segoe UI", 9, "bold"),
+                fill=color,
+                anchor="c",
+            )
             start += extent
 
     def _draw_subject_chart(self, canvas: tk.Canvas | None = None, mastery_scores: list[dict] | None = None):

@@ -1,5 +1,3 @@
-"""Analytics utilities for the TwoTor ITS."""
-
 from __future__ import annotations
 
 import csv
@@ -50,7 +48,6 @@ def mastery_snapshot(progress: Dict[str, float]) -> Dict[str, float]:
 
 
 def attempt_velocity(attempts: Iterable[Attempt], window: int = 7) -> float:
-    # For demo we simply return avg attempts per quiz (bounded).
     attempt_list = list(attempts)
     if not attempt_list:
         return 0.0

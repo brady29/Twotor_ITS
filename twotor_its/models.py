@@ -1,6 +1,17 @@
-"""Core data models for the TwoTor Intelligent Tutoring System."""
-
+'''This is the datamodel for the twotor inteligent system, the modules are:
+- User
+- Question
+- Quiz
+- Lesson
+- Module
+- Course
+- Attempt
+- ProgressRecord
+- LessonActivity
+'''
 from __future__ import annotations
+
+
 
 from dataclasses import dataclass, field, asdict
 from enum import Enum

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
@@ -145,6 +146,7 @@ class TutoringSystem:
             )
         quiz_map = self._quiz_index
         rows = gradebook_rows(self.attempts, self.users, quiz_map)
+        difficulty_breakdown = self._difficulty_breakdown(roster_ids)
         at_risk = [
             student for student in roster_details if student["predicted_score"] is not None and student["predicted_score"] < 50
         ]
@@ -199,6 +201,7 @@ class TutoringSystem:
             "help_requests": help_requests,
             "class_mastery": class_mastery,
             "student_mastery_scores": student_mastery_scores,
+            "difficulty_breakdown": difficulty_breakdown,
         }
 
     # endregion
@@ -375,6 +378,26 @@ class TutoringSystem:
             )
         self.progress_records = other_records
         self.storage.save_progress(self.progress_records)
+
+    def _difficulty_breakdown(self, roster_ids: set[str]) -> Dict[str, float]:
+        buckets: Counter = Counter({"Easy": 0, "Medium": 0, "Hard": 0})
+        for attempt in self.attempts:
+            if attempt.user_id not in roster_ids:
+                continue
+            quiz = self._quiz_index.get(attempt.quiz_id)
+            if not quiz:
+                continue
+            for question in quiz.questions:
+                if question.difficulty <= 1:
+                    buckets["Easy"] += 1
+                elif question.difficulty == 2:
+                    buckets["Medium"] += 1
+                else:
+                    buckets["Hard"] += 1
+        total = sum(buckets.values())
+        if total == 0:
+            return {key: 0.0 for key in buckets}
+        return {key: round((value / total) * 100, 1) for key, value in buckets.items()}
 
     def _predict_next_score(self, user_id: str) -> float | None:
         attempts = [attempt for attempt in self.attempts if attempt.user_id == user_id]

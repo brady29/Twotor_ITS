@@ -13,7 +13,7 @@ class RegressionWeights:
 
 
 class LinearRegressionModel:
-    """Tiny linear model with fixed, pre-trained weights."""
+    
 
     def __init__(self, weights: RegressionWeights):
         self.weights = weights
@@ -27,16 +27,15 @@ class LinearRegressionModel:
     def predict_clipped(self, features: Dict[str, float], low: float = 0, high: float = 100) -> float:
         return max(low, min(high, self.predict(features)))
 
-
+#fixed weights for regression model
 def default_regression_model() -> LinearRegressionModel:
     weights = RegressionWeights(
-        intercept=22.0,
+        intercept=5.0,
         coefficients={
-            "avg_mastery": 55.0,
-            "recent_attempt_score": 0.35,
-            "time_spent_minutes": 0.8,
-            "attempts_last_week": -1.5,
-            "question_difficulty": -4.0,
+            "avg_mastery": 30.0,
+            "recent_attempt_score": 0.6,
+            "attempts_last_week": 0.5,
+            "question_difficulty": -5.0,
         },
     )
     return LinearRegressionModel(weights=weights)

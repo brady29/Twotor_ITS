@@ -5,7 +5,7 @@ stu-cole,Cole Nguyen,Derivatives 1,92.0,23/25,1725
 stu-001,Emma Rodriguez,Precalculus Diagnostic 1,92.0,23/25,1890
 stu-001,Emma Rodriguez,Understanding Limits,88.0,22/25,1620
 stu-001,Emma Rodriguez,Derivatives 1,95.0,19/20,1475
-stu-002,Liam Chen,Precalculus Diagnostic 1,78.0,19/25,2100
+stu-002,Liam Chen,Precalculus Diagnostic 1,44.0,11/25,2335
 stu-002,Liam Chen,Precalculus Diagnostic 2,82.0,21/25,2055
 stu-002,Liam Chen,Limits and Continuity 1,80.0,20/25,1930
 stu-003,Sophia Patel,Understanding Limits,93.0,24/25,1580
@@ -16,10 +16,10 @@ stu-004,Noah Thompson,Precalculus Diagnostic 2,18.0,5/25,2410
 stu-004,Noah Thompson,Derivatives 1,72.0,15/20,1960
 stu-005,Ava Johnson,Derivative Definition,85.0,17/20,1600
 stu-005,Ava Johnson,Rules and Shortcuts,90.0,18/20,1520
-stu-005,Ava Johnson,Derivatives 2,87.0,26/30,1705
+stu-005,Ava Johnson,Derivatives 2,48.0,12/30,1980
 stu-006,Ethan Williams,Antiderivatives Basics,91.0,21/23,1495
 stu-006,Ethan Williams,Integrals 1,89.0,25/28,1805
-stu-006,Ethan Williams,Integrals 2,84.0,24/30,1890
+stu-006,Ethan Williams,Integrals 2,41.0,11/30,2140
 stu-007,Mia Anderson,Optimization,88.0,22/25,1710
 stu-007,Mia Anderson,Applications 2,85.0,23/27,1785
 stu-007,Mia Anderson,Applications 3,86.0,24/28,1820
@@ -30,32 +30,32 @@ stu-009,Isabella Martinez,Trig Refresher,94.0,28/30,1680
 stu-009,Isabella Martinez,Precalculus Diagnostic 1,96.0,24/25,1775
 stu-009,Isabella Martinez,Limits and Continuity 3,92.0,28/30,1880
 stu-010,Lucas Brown,Derivatives 3,81.0,24/30,2105
-stu-010,Lucas Brown,Integrals 1,83.0,24/28,2020
-stu-010,Lucas Brown,Integrals 2,88.0,27/30,1985
+stu-010,Lucas Brown,Integrals 1,45.0,13/28,2195
+stu-010,Lucas Brown,Integrals 2,47.0,13/30,2250
 stu-011,Harper Wilson,Understanding Limits,91.0,23/25,1690
 stu-011,Harper Wilson,Continuity and Discontinuities,93.0,26/28,1760
-stu-011,Harper Wilson,Limits and Continuity 3,88.0,26/30,1820
+stu-011,Harper Wilson,Limits and Continuity 3,46.0,12/30,2085
 stu-012,Elijah Moore,Derivative Definition,90.0,18/20,1585
 stu-012,Elijah Moore,Derivatives 1,92.0,23/25,1650
 stu-012,Elijah Moore,Applications 1,85.0,17/20,1740
 stu-013,Amelia Clark,Rules and Shortcuts,95.0,19/20,1505
-stu-013,Amelia Clark,Derivatives 2,94.0,28/30,1680
+stu-013,Amelia Clark,Derivatives 2,47.0,14/30,2090
 stu-013,Amelia Clark,Optimization,90.0,23/25,1720
 stu-014,James Lee,Precalculus Diagnostic 2,80.0,20/25,2050
 stu-014,James Lee,Precalculus Diagnostic 3,82.0,21/25,2120
 stu-014,James Lee,Limits and Continuity 1,84.0,21/25,1985
 stu-015,Charlotte Harris,Functions and Graphs,96.0,24/25,1600
 stu-015,Charlotte Harris,Exponents and Logarithms,94.0,28/30,1550
-stu-015,Charlotte Harris,Trig Refresher,95.0,29/30,1625
+stu-015,Charlotte Harris,Trig Refresher,38.0,10/30,2145
 stu-016,Henry Walker,Antiderivatives Basics,88.0,20/23,1745
 stu-016,Henry Walker,Definite Integrals and Area,86.0,22/26,1810
 stu-016,Henry Walker,Applications of Integrals,89.0,24/27,1885
 stu-017,Evelyn Young,Applications 1,87.0,22/25,1770
 stu-017,Evelyn Young,Applications 2,85.0,23/27,1850
-stu-017,Evelyn Young,Applications 3,84.0,24/28,1910
+stu-017,Evelyn Young,Applications 3,42.0,11/28,2145
 stu-018,Sebastian King,Precalculus Diagnostic 3,88.0,22/25,2000
 stu-018,Sebastian King,Derivative Definition,90.0,18/20,1710
-stu-018,Sebastian King,Derivatives 3,86.0,26/30,1945
+stu-018,Sebastian King,Derivatives 3,48.0,13/30,2210
 stu-019,Abigail Scott,Understanding Limits,90.0,24/27,1680
 stu-019,Abigail Scott,Limits and Continuity 2,88.0,26/30,1830
 stu-019,Abigail Scott,Derivatives 2,85.0,25/30,1895
@@ -64,10 +64,10 @@ stu-020,Benjamin Wright,Functions and Graphs,86.0,22/25,1825
 stu-020,Benjamin Wright,Applications of Integrals,-4.0,0/27,2375
 stu-021,Emily Green,Exponents and Logarithms,92.0,28/30,1580
 stu-021,Emily Green,Trig Refresher,93.0,28/30,1660
-stu-021,Emily Green,Precalculus Diagnostic 2,90.0,23/25,1910
+stu-021,Emily Green,Precalculus Diagnostic 2,46.0,11/25,2150
 stu-022,Daniel Baker,Related Rates,88.0,22/25,1765
 stu-022,Daniel Baker,Optimization,86.0,21/25,1805
-stu-022,Daniel Baker,Applications 2,84.0,22/27,1870
+stu-022,Daniel Baker,Applications 2,42.0,11/27,2130
 stu-023,Grace Adams,Continuity and Discontinuities,91.0,25/28,1740
 stu-023,Grace Adams,Limits and Continuity 3,89.0,27/30,1815
 stu-023,Grace Adams,Derivatives 1,93.0,23/25,1685
@@ -75,14 +75,14 @@ stu-024,Michael Nelson,Derivatives 2,82.0,24/30,1900
 stu-024,Michael Nelson,Applications 1,84.0,20/24,1845
 stu-024,Michael Nelson,Applications 3,-6.0,1/28,2230
 stu-025,Chloe Carter,Integrals 1,90.0,26/28,1860
-stu-025,Chloe Carter,Integrals 2,88.0,26/30,1940
+stu-025,Chloe Carter,Integrals 2,49.0,14/30,2175
 stu-025,Chloe Carter,Integrals 3,89.0,27/30,2010
 stu-026,Alexander Perez,Antiderivatives Basics,92.0,22/23,1685
 stu-026,Alexander Perez,Applications of Integrals,90.0,25/27,1855
 stu-026,Alexander Perez,Integrals 1,91.0,26/28,1795
 stu-027,Natalie Turner,Functions and Graphs,89.0,22/25,1725
 stu-027,Natalie Turner,Understanding Limits,87.0,22/26,1800
-stu-027,Natalie Turner,Derivative Definition,88.0,18/20,1675
+stu-027,Natalie Turner,Derivative Definition,40.0,8/20,1980
 stu-028,William Ramirez,Precalculus Diagnostic 2,-8.0,0/25,2460
 stu-028,William Ramirez,Limits and Continuity 1,87.0,22/25,1935
 stu-028,William Ramirez,Derivatives 1,89.0,23/25,1885
