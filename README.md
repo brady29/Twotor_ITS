@@ -44,4 +44,3 @@ Extending
 ---------
 - Add or edit content in `data/sample_content.json`; align skill names with BKT parameters if you add new skills.
 - Reset to a clean slate by deleting `data/state.json` (and any lesson activity files if present); they regenerate on next run.
-- Adjust username rules in `twotor_its/policy.py` as needed.
