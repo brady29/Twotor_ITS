@@ -44,7 +44,12 @@ def export_gradebook_csv(path: Path, rows: List[Dict[str, str]]) -> None:
 
 
 def mastery_snapshot(progress: Dict[str, float]) -> Dict[str, float]:
-    return {skill: round(value, 3) for skill, value in progress.items()}
+    snapshot = {skill: round(value, 3) for skill, value in progress.items()}
+    if snapshot:
+        snapshot["total_mastery"] = round(mean(snapshot.values()), 3)
+    else:
+        snapshot["total_mastery"] = 0.0
+    return snapshot
 
 
 def attempt_velocity(attempts: Iterable[Attempt], window: int = 7) -> float:

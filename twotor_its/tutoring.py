@@ -52,7 +52,7 @@ class TutoringSystem:
         self._lesson_index: Dict[str, Lesson] = self._build_lesson_index()
         self.regression: LinearRegressionModel = self._init_regression_model()
 
-    # region lookup helpers
+
     def _build_quiz_index(self) -> Dict[str, Quiz]:
         quizzes: Dict[str, Quiz] = {}
         for course in self.courses.values():
@@ -79,9 +79,7 @@ class TutoringSystem:
             raise KeyError(f"User {user_id} not found")
         return self.users[user_id]
 
-    # endregion
 
-    # region dashboards
     def student_dashboard(self, user_id: str) -> Dict:
         student = self.get_user(user_id)
         if student.role != UserRole.STUDENT:
@@ -92,6 +90,7 @@ class TutoringSystem:
         lesson_activity = [entry for entry in self.lesson_activity if entry.user_id == user_id]
         lessons = []
         completed_lessons = {entry.lesson_id for entry in lesson_activity}
+        total_mastery = round(mean(mastery.values()) * 100, 1) if mastery else 0.0
         for lesson in self.list_lessons():
             lessons.append(
                 {
@@ -107,6 +106,7 @@ class TutoringSystem:
             "user": student.to_dict(),
             "navigation": self.NAV_ITEMS,
             "mastery": mastery,
+            "total_mastery": total_mastery,
             "recent_attempts": [attempt.to_dict() for attempt in recent],
             "predicted_next_score": round(prediction, 1) if prediction is not None else None,
             "lessons": lessons,
@@ -209,9 +209,6 @@ class TutoringSystem:
             "difficulty_breakdown": difficulty_breakdown,
         }
 
-    # endregion
-
-    # region quiz flow
     def list_quizzes(self) -> List[Dict]:
         return [
             {
@@ -289,17 +286,12 @@ class TutoringSystem:
             "mastery": mastery_snapshot(self._get_bkt(user_id).dump_mastery()),
         }
 
-    # endregion
-
-    # region analytics + exports
+  
     def export_grades(self, destination: Path) -> Path:
         rows = gradebook_rows(self.attempts, self.users, self._quiz_index)
         export_gradebook_csv(destination, rows)
         return destination
 
-    # endregion
-
-    # region help
     def request_help(self, user_id: str, channel: str, question: str) -> Dict:
         if channel not in {"appointment", "assignment"}:
             raise ValueError("channel must be 'appointment' or 'assignment'")
@@ -307,9 +299,7 @@ class TutoringSystem:
         self.storage.save_help_tickets(self.helpdesk.dump())
         return asdict(ticket)
 
-    # endregion
 
-    # region lessons + profiles
     def list_lessons(self) -> List[Lesson]:
         return list(self._lesson_index.values())
 
@@ -320,6 +310,7 @@ class TutoringSystem:
         attempts = [attempt for attempt in self.attempts if attempt.user_id == user_id]
         mastery = mastery_snapshot(self._get_bkt(user_id).dump_mastery())
         avg_score = round(mean([a.score for a in attempts]), 1) if attempts else None
+        total_mastery = round(mean(mastery.values()) * 100, 1) if mastery else 0.0
         lesson_activity = [entry for entry in self.lesson_activity if entry.user_id == user_id]
         lessons_completed = {entry.lesson_id for entry in lesson_activity}
         help_requests = [ticket for ticket in self.helpdesk.dump() if ticket.user_id == user_id]
@@ -327,6 +318,7 @@ class TutoringSystem:
         return {
             "user": student.to_dict(),
             "mastery": mastery,
+            "total_mastery": total_mastery,
             "predicted_next_score": round(prediction, 1) if prediction is not None else None,
             "attempts": [attempt.to_dict() for attempt in attempts[-10:]],
             "attempt_stats": {
@@ -343,9 +335,7 @@ class TutoringSystem:
             "help_requests": [asdict(ticket) for ticket in help_requests[-5:]],
         }
 
-    # endregion
-
-    # region internal helpers
+    
     def _get_bkt(self, user_id: str) -> BKTModel:
         if user_id in self._mastery_cache:
             return self._mastery_cache[user_id]
@@ -419,7 +409,7 @@ class TutoringSystem:
         }
         return self.regression.predict_clipped(features)
 
-    # endregion
+    
 
     # region regression training
     def _init_regression_model(self) -> LinearRegressionModel:
@@ -463,4 +453,4 @@ class TutoringSystem:
 
         return train_regression_weights(rows)
 
-    # endregion
+    

@@ -1455,6 +1455,32 @@
       "total_questions": 3,
       "time_taken_seconds": 270,
       "score": 66.7
+    },
+    {
+      "user_id": "stu-001",
+      "quiz_id": "quiz-calc-01",
+      "answers": [
+        2,
+        1,
+        2
+      ],
+      "correct_count": 3,
+      "total_questions": 3,
+      "time_taken_seconds": 270,
+      "score": 100.0
+    },
+    {
+      "user_id": "stu-004",
+      "quiz_id": "quiz-pre-01",
+      "answers": [
+        1,
+        1,
+        2
+      ],
+      "correct_count": 3,
+      "total_questions": 3,
+      "time_taken_seconds": 270,
+      "score": 100.0
     }
   ],
   "progress": [
@@ -1467,26 +1493,6 @@
       "user_id": "stu-002",
       "skill": "calculus",
       "mastered_probability": 0.7759
-    },
-    {
-      "user_id": "stu-003",
-      "skill": "precalculus",
-      "mastered_probability": 0.35
-    },
-    {
-      "user_id": "stu-003",
-      "skill": "calculus",
-      "mastered_probability": 0.8669
-    },
-    {
-      "user_id": "stu-004",
-      "skill": "precalculus",
-      "mastered_probability": 0.2931
-    },
-    {
-      "user_id": "stu-004",
-      "skill": "calculus",
-      "mastered_probability": 0.8836
     },
     {
       "user_id": "stu-006",
@@ -1759,14 +1765,34 @@
       "mastered_probability": 0.9749
     },
     {
+      "user_id": "stu-003",
+      "skill": "precalculus",
+      "mastered_probability": 0.35
+    },
+    {
+      "user_id": "stu-003",
+      "skill": "calculus",
+      "mastered_probability": 0.8696
+    },
+    {
       "user_id": "stu-001",
       "skill": "precalculus",
-      "mastered_probability": 0.8363
+      "mastered_probability": 0.8396
     },
     {
       "user_id": "stu-001",
       "skill": "calculus",
-      "mastered_probability": 0.349
+      "mastered_probability": 0.9739
+    },
+    {
+      "user_id": "stu-004",
+      "skill": "precalculus",
+      "mastered_probability": 0.9699
+    },
+    {
+      "user_id": "stu-004",
+      "skill": "calculus",
+      "mastered_probability": 0.8836
     }
   ],
   "notifications": [],
@@ -1831,6 +1857,15 @@
       "channel": "assignment",
       "question": "I am stuck on limits and continuity",
       "created_at": "2025-11-24T19:11:22.616092",
+      "status": "responded",
+      "response": "Please review materials and your instructor will get back to you shortly"
+    },
+    {
+      "ticket_id": "HELP-0008",
+      "user_id": "stu-001",
+      "channel": "assignment",
+      "question": "I am stuck on derivatives",
+      "created_at": "2025-11-24T20:32:50.223920",
       "status": "responded",
       "response": "Please review materials and your instructor will get back to you shortly"
     }
@@ -1991,6 +2026,18 @@
       "lesson_id": "lesson-related-rates",
       "minutes_spent": 15,
       "completed_at": "2025-11-24T19:11:00.446641"
+    },
+    {
+      "user_id": "stu-003",
+      "lesson_id": "lesson-limits-intro",
+      "minutes_spent": 12,
+      "completed_at": "2025-11-24T20:15:02.126032"
+    },
+    {
+      "user_id": "stu-001",
+      "lesson_id": "lesson-precalc-exponents",
+      "minutes_spent": 14,
+      "completed_at": "2025-11-24T20:32:27.614661"
     }
   ]
 }
